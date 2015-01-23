@@ -16,20 +16,20 @@ module CompactJSON
     def format(result)
       @result = result
       File.open("./coverage/results.json", "w") do |file|
-        file.print(parsed_result)
+        file.print(formatted_result)
       end
     end
 
-    def parsed_result
+    def formatted_result
       {
-        summary: parsed_summary,
-        files: parsed_files
+        summary: summary_results,
+        files: file_results
       }.to_json
     end
 
     private
 
-    def parsed_files
+    def file_results
       self.result.files.map do |file|
         {
           filename: file.filename,
@@ -38,7 +38,7 @@ module CompactJSON
       end
     end
 
-    def parsed_summary
+    def summary_results
       {
         coverage: result.covered_percent.round(2),
       }
