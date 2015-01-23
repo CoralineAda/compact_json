@@ -1,28 +1,54 @@
-# Simplecov::Json::Lite
+# CompactJSON
 
-TODO: Write a gem description
+CompactJSON is a summary-only JSON formatter for SimpleCov. For complete JSON
+output you probably want [simplecov-json](https://github.com/vicentllongo/simplecov-json).
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'simplecov-json-lite'
+gem 'simplecov_compact_json', require: false
 ```
 
 And then execute:
+    `$ bundle`
 
-    $ bundle
+Now in your spec helper:
 
-Or install it yourself as:
+```ruby
+SimpleCov.formatters = [
+  SimpleCov::Formatter::CompactJSON
+]
+```
 
-    $ gem install simplecov-json-lite
+The results will be written to `coverage/results.json`
 
-## Usage
+## Sample Output
 
-TODO: Write usage instructions here
+```
+{
+  "summary": {
+    "coverage": 50.00
+  },
+  "files": [
+    {
+      "filename": "foo.rb",
+      "coverage": 100.00
+    },
+    {
+      "filename": "bar.rb",
+      "coverage": 0.00
+    }
+  ]
+}
+```
 
 ## Contributing
+
+Please note that this project is released with a [Contributor Code of Conduct]
+(http://contributor-covenant.org/version/1/0/0/).
+By participating in this project you agree to abide by its terms.
 
 1. Fork it ( https://github.com/[my-github-username]/simplecov-json-lite/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
