@@ -15,7 +15,7 @@ module CompactJSON
 
     def format(result)
       @result = result
-      File.open("./coverage/results.json", "w") do |file|
+      File.open(destination_file, "w") do |file|
         file.print(formatted_result)
       end
     end
@@ -28,6 +28,10 @@ module CompactJSON
     end
 
     private
+
+    def destination_file
+      File.join(SimpleCov.coverage_dir, "results.json")
+    end
 
     def file_results
       self.result.files.map do |file|
